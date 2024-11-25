@@ -1,0 +1,73 @@
+
+body {
+  background-color: #f3f2ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+/* LOGIN */
+/* Contenedor */
+.sign-in-form { background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Título del formulario */
+.form-tittle h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #0073b1;
+}
+
+/* Campos del formulario */
+input[type="text"], input[type="password"] {
+  width: 100%; padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  width: 100%; padding: 10px;
+  background-color: #0073b1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+  input[type="submit"]:hover {
+  background-color: #005f8a;
+}
+
+/* Enlaces adicionales */
+.form-addons a {
+  color: #0073b1;
+  text-decoration: none;
+  margin: 10px 0;
+  display: block;
+}
+.form-addons span a{
+  display: block;
+  margin-top: 10px;
+  color: #666;
+}
+.form-addons a:hover {
+  text-decoration: underline;
+}
+
+/* Leyenda */
+.legend {
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 10px;
+}
