@@ -1,0 +1,93 @@
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  align-items: center;
+  background-color: #F2F2F2;
+}
+.sign-up-container{
+  background-color: #64758C;
+  width: 310px;
+  display: flex;
+  border: 1px solid black;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px 2px grey;
+}
+
+h1{
+  color: white;
+  text-shadow: 2px 2px #0540F2;
+  font-size: 38px;
+  text-align: center;
+  margin: 10px 0px;
+}
+.sign-up-form{
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.datos{
+  display: flex;
+  margin-bottom: 10px;
+}
+.datos input{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+.datos fieldset{
+  color: white;
+  border: none;
+}
+.datos legend{
+  margin: 5px;
+}
+
+.regis{
+  display: flex;
+  margin-bottom: 10px;
+}
+.regis input{
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+.regis fieldset{
+  color: white;
+  border: none;
+}
+.regis legend{
+  margin: 5px;
+}
+
+#put{
+  justify-content: center; /*el input no se centra*/
+  max-width: 95px;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+  background-color: #2168A6;
+  border-radius: 10px;
+}
+#put:hover{
+  background-color: #4886D9;
+}
+.log{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+.log fieldset{
+  border: none;
+  color: #0E3659;
+}
+fieldset a{
+  text-decoration: none;
+  color: #0540F2;
+}

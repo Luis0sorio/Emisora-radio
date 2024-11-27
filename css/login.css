@@ -1,73 +1,71 @@
 
-body {
-  background-color: #f3f2ef;
+body{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-/* LOGIN */
-/* Contenedor */
-.sign-in-form { background-color: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
+  justify-content: center;
+  margin: 60px;
+  background-color: #F2F0F0;
 }
 
-/* Título del formulario */
-.form-tittle h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #0073b1;
+.contenedor{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
 
-/* Campos del formulario */
-input[type="text"], input[type="password"] {
-  width: 100%; padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 14px;
+.form-container{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
-
-input[type="submit"] {
-  width: 100%; padding: 10px;
-  background-color: #0073b1;
+h2{
   color: white;
+  text-align: center;
+  font-size: 32px;
+  text-shadow: 2px 2px #0E3659;
+}
+.form-group{
+  background-color: #3A558C;
+  border-radius: 12px;
+  margin: 5px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-group input{
+  margin: 15px;
+  width: 200px;
+  padding: 5px;
   border: none;
+  border-bottom: 1px solid;
   border-radius: 5px;
-  font-size: 16px;
+}
+input[name="entrar"]{
+  width: 120px;
+  border-radius: 10px;
+  background-color: #4886D9;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-  input[type="submit"]:hover {
-  background-color: #005f8a;
 }
 
-/* Enlaces adicionales */
-.form-addons a {
-  color: #0073b1;
+.extras{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 5px;
+} 
+
+.extras a {
+  font-size: 14px;
+  color: #3A558C;
   text-decoration: none;
-  margin: 10px 0;
-  display: block;
-}
-.form-addons span a{
-  display: block;
-  margin-top: 10px;
-  color: #666;
-}
-.form-addons a:hover {
-  text-decoration: underline;
 }
 
-/* Leyenda */
-.legend {
-  font-weight: bold;
-  color: #444;
-  margin-bottom: 10px;
+.extras span {
+  font-size: 14px;
+  color: #333;
+}
+.extras a:hover {
+  text-decoration: none;
 }

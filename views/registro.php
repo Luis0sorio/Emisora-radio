@@ -68,7 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
     echo "<span style='color:green;'>Usuario registrado exitosamente.</span>";
   } else {
     foreach ($errores as $error) {
-      echo "<span style='color:crimson;'>$error</span><br>";
+      echo "<div class='errores'>
+        <span style='color:crimson;'>$error</span><br>
+      </div>";
     }
   }
 }
@@ -85,26 +87,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
 <body>
   <div class="sign-up-container">
   <form method="POST" class="sign-up-form">
-    <div class="sign-up-tittle"><h1>REGISTRO</h1></div>
-    <fieldset>
-      <legend>DATOS PERSONALES</legend>
-      <input type="text" name="nombre" placeholder="Nombre"><br><br>
-      <input type="text" name="apellido" placeholder="Apellido"><br><br>
-    </fieldset>
+    <div class="sign-up-tittle">
+      <h1>SIGN UP</h1>
+      <span></span>
+    </div>
+    <div class="datos">
+      <fieldset>
+        <legend>DATOS PERSONALES</legend>
+        <input type="text" name="nombre" placeholder="Nombre"><br><br>
+        <input type="text" name="apellido" placeholder="Apellido"><br><br>
+      </fieldset>
+    </div>
+    <br>
+    <div class="regis">
     <fieldset>
       <legend>DATOS DE REGISTRO</legend>
       <input type="text" name="usuario" placeholder="Usuario"><br><br>
       <input type="email" name="email" placeholder="Correo electrónico"><br><br>
       <input type="password" name="password" placeholder="Contraseña"><br><br>
     </fieldset>
-  <br>
-    <input type="submit" name="registro" value="Registrarse">
+    </div>
+    <br>
+    <input id="put" type="submit" name="registro" value="Registrarse">
   </form>
   </div>
   <br>
     <?php mostrarErrores();?>
-  <fieldset>
-    <span>¿Tienes una cuenta? <a href="login.php">Entrar</a></span>
-  </fieldset>
+
+  <div class="log">
+    <fieldset>
+      <span>¿Tienes una cuenta? <a href="login.php">Entrar</a></span>
+    </fieldset>
+  </div>
+
 </body>
 </html>

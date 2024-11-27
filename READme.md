@@ -13,7 +13,7 @@ Esta ventana contiene:
   - Si la creacion del usuario es correcta, carga la ventana con un mensaje nuevo y no muestra el formulario.
   - Un enlace para volver atrás para poder iniciar sesion ('LOGIN') con tus datos.
 
-3. Vista de 'PERFIL PERSONAL'
+3. Vista de 'PERFIL USUARIO'
 Esta ventana contiene:
   - En la parte superior de la ventana, el nombre de usuario que ha iniciado sesión y un boton de cerrar sesión que redirige a 'LOGIN'.
   - Un botón de 'ver grupos musicales'. El botón: 

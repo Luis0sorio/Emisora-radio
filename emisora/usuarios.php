@@ -42,12 +42,30 @@ function getUsuarios() {
 }
 
 /**
- * FUNCION QUE MUESTRA UN REGISTRO 'USUARIO' DE LA TABLA 
+ * FUNCION QUE MUESTRA UN REGISTRO 'usuario' DE LA TABLA 
  */
 function getUsuarioUser($usuario) {
   try{
     $conexion = conexionDB();
     $select = "SELECT usuario FROM usuarios WHERE usuario = :usuario";
+    $consulta = $conexion->prepare($select);
+    $consulta->bindValue(':usuario', $usuario);
+    $consulta->execute();
+    return $consulta->fetchColumn();
+  } catch (PDOException $e) {
+    echo "Error al realizar la consulta. ". $e->getMessage();
+    return false;
+  }
+}
+
+
+/**
+ * FUNCION QUE MUESTRA UN REGISTRO 'password' DE LA TABLA 
+ */
+function getUsuarioPass($usuario) {
+  try{
+    $conexion = conexionDB();
+    $select = "SELECT password FROM usuarios WHERE usuario = :usuario"; //recuperamos la contraseña
     $consulta = $conexion->prepare($select);
     $consulta->bindValue(':usuario', $usuario);
     $consulta->execute();
