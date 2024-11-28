@@ -2,9 +2,10 @@
 body{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 60px;
+  margin: 40px;
   background-color: #F2F0F0;
 }
 
@@ -14,10 +15,9 @@ body{
   margin: 20px;
 }
 
-.form-container{
-  border-radius: 12px;
-  padding: 5px;
+.new-container{
   background-color: #4D3B8C;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -26,55 +26,44 @@ h2{
   color: white;
   text-align: center;
   font-size: 32px;
-  text-shadow: 2px 2px #0E3659;
+  text-shadow: 2px 2px #0367A6;
 }
-.form-group{
+.new-group{
   background-color: #0367A6;
   border-radius: 12px;
-  margin: 5px;
-  width: 400px;
+  margin: 10px;
+  padding: 10px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.form-group input{
-  margin: 15px;
+
+input{
   width: 200px;
   padding: 10px;
-  border: none;
-  border-bottom: 1px solid;
+  margin: 10px;
   border-radius: 5px;
+  border: none;
 }
-input[name="entrar"]{
-  width: 120px;
-  border-radius: 10px;
-  background-color: #4886D9;
+
+input[name='confirmar']{
+  width: 100px;
   cursor: pointer;
+  background-color: white;
+  color: #042F40;
+}
+input[name='confirmar']:hover{
+  background-color: #ACD1F2;
 }
 
-.extras{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 5px;
-} 
-
-.extras a {
-  font-size: 14px;
+.atras{
+  text-align: center;
   color: #3A558C;
+}
+.atras a{
   text-decoration: none;
 }
-.extras a:hover{
+.atras a:hover{
   color: #21BFBF;
-}
-
-.extras span {
-  font-size: 14px;
-  color: #333;
-}
-.extras a:hover {
-  text-decoration: none;
-}
-label{
-  font-size: 10px
 }

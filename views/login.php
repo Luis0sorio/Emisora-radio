@@ -2,10 +2,16 @@
 
 require_once "../emisora/usuarios.php";
 
+session_start();
+
 if (isset($_COOKIE['usuario'])) {
-  $_SESSION['usuario'] = $_COOKIE['usuario'];
-  header("Location: perfil-user.php");
-  exit;
+  $token = $_COOKIE['usuario'];
+  $usuario = validarToken($token);
+  if($usuario){
+    $_SESSION['usuario'] = $usuario;
+    header("Location: perfil-user.php");
+    exit;
+  }
 }
 
 $usuario = $password = "";
@@ -34,10 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
       $errores[] = "Usuario o contraseña incorrectos.";
     } else {
       $_SESSION['usuario'] = $usuario;
-      if (isset($_POST['recordarme'])) {
-        setcookie('usuario', $usuario, time() + (30 * 24 * 60 * 60), "/");
+      if (isset($_POST['remember'])) {
+        $token = bin2hex(random_bytes(16));
+        setcookie('usuario', $token, time() + (30 * 24 * 6 * 6), "/");
+        guardarToken($usuario, $token);
       }
-      header("Location: perfil-user.php"); // Redirige al panel principal
+      header("Location: ./login.php"); // Redirige al panel principal
       exit;
     }
   }
@@ -63,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
         <br>
         <input type="password" name="password" placeholder="Contraseña"><br>
         <br>
-        <input type="checkbox" name="remember">Mantener abierta la sesión
+        <label><input type="checkbox" name="remember">Mantener abierta la sesión</label>
         <br><br>
         <input type="submit" name="entrar" value="Entrar">
       </div>

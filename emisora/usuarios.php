@@ -1,4 +1,5 @@
 <?php
+
 require_once "../database/conexion.php";
 
 /**
@@ -73,5 +74,31 @@ function getUsuarioPass($usuario) {
   } catch (PDOException $e) {
     echo "Error al realizar la consulta. ". $e->getMessage();
     return false;
+  }
+}
+
+function validarToken($token){
+  try{
+    $conexion = conexionDB();
+    $select = "SELECT usuario FROM usuarios WHERE token = :token";
+    $stmt = $conexion->prepare($select);
+    $stmt->bindValue(':token', $token);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+  } catch (PDOException $e) {
+    echo "Error en la validación. " . $e->getMessage();
+  }
+}
+
+function guardarToken($usuario, $token){
+  try{
+    $conexion = conexionDB();
+    $update = "UPDATE usuarios SET token = :token WHERE usuario = :usuario";
+    $stmt = $conexion->prepare($update);
+    $stmt->bindValue(':usuario', $usuario);
+    $stmt->bindValue(':token', $token);
+    $stmt->execute();
+  }catch (PDOException $e) {
+    echo "Error en la validación. " . $e->getMessage();
   }
 }

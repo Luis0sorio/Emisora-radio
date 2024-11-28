@@ -7,7 +7,7 @@ body{
   background-color: #F2F2F2;
 }
 .sign-up-container{
-  background-color: #64758C;
+  background-color: #0367A6;
   width: 310px;
   display: flex;
   border: 1px solid black;
@@ -28,6 +28,8 @@ h1{
   padding: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .datos{
   display: flex;
@@ -65,29 +67,31 @@ h1{
 
 #put{
   justify-content: center; /*el input no se centra*/
-  max-width: 95px;
-  padding: 5px;
+  max-width: 105px;
+  font-size: 14px;
+  padding: 10px;
   border: none;
   background-color: transparent;
   cursor: pointer;
   color: white;
-  background-color: #2168A6;
+  background-color: #4886D9;
   border-radius: 10px;
 }
 #put:hover{
-  background-color: #4886D9;
+  background-color: #0E6073;
 }
 .log{
   margin-top: 15px;
   display: flex;
   justify-content: center;
   width: 300px;
-}
-.log fieldset{
-  border: none;
   color: #0E3659;
 }
-fieldset a{
+
+a{
   text-decoration: none;
   color: #0540F2;
+}
+a:hover{
+  color: #0E3659;
 }

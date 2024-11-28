@@ -89,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
   <form method="POST" class="sign-up-form">
     <div class="sign-up-tittle">
       <h1>SIGN UP</h1>
-      <span></span>
     </div>
     <div class="datos">
       <fieldset>
@@ -98,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
         <input type="text" name="apellido" placeholder="Apellido"><br><br>
       </fieldset>
     </div>
-    <br>
     <div class="regis">
     <fieldset>
       <legend>DATOS DE REGISTRO</legend>
@@ -115,9 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
     <?php mostrarErrores();?>
 
   <div class="log">
-    <fieldset>
       <span>¿Tienes una cuenta? <a href="login.php">Entrar</a></span>
-    </fieldset>
   </div>
 
 </body>
