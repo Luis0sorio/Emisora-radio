@@ -1,33 +1,58 @@
 <?php
 session_start();
 
-// Verificar si el usuario está logeado
+// Verificar sesión o cookie
 if (!isset($_SESSION['usuario'])) {
-    header("Location: ./login.php"); // Redirige al login si no hay sesión activa
-    exit;
+	if (isset($_COOKIE['usuario'])) {
+		$token = $_COOKIE['usuario'];
+		$usuario = validarToken($token);
+		if ($usuario) {
+			$_SESSION['usuario'] = $usuario;
+		} else {
+			header("Location: login.php");
+			exit;
+		}
+	} else {
+		header("Location: login.php");
+		exit;
+	}
 }
 
-// Obtener el usuario de la sesión
 $usuario = $_SESSION['usuario'];
-
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
-    <link href="../css/perfil.css" rel="stylesheet" type="text/css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Perfil de Usuario</title>
+	<link href="../css/perfil-user.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-    <div class="perfil-container">
-        <h1>Bienvenido, <?= htmlspecialchars($usuario); ?>!</h1>
-        <p>Este es tu panel de usuario.</p>
-        <!-- Enlace o botón para cerrar sesión -->
-        <form action="logout.php" method="POST">
-            <button type="submit" class="btn-logout">Cerrar Sesión</button>
-        </form>
-    </div>
+	<div class="profile">
+		<div class="perfil-container">
+			<h1><?= htmlspecialchars($usuario); ?></h1>
+			<p>Aquí puede ir el correo y algo más.</p>
+		</div>
+		<form action="logout.php" method="POST">
+			<button type="submit" class="btn-logout">Cerrar Sesión</button>
+		</form>
+	</div>
+
+	<div class="to-do">
+		<p>Aquí iran los enlaces para ver las tablas</p>
+		<a href="./grupos_musica.php">Ver grupos musicales</a>
+		<a href="">Ver conciertos/eventos</a>
+		<a href="">Ver </a>
+		<a href="">cuatro</a>
+	</div>
+
+	<div class="my-groups">
+		<p>Aquí van los conciertos de los grupos que deseo añadir a mi lista</p>
+	</div>
 </body>
+
 </html>

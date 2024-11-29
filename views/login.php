@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
         setcookie('usuario', $token, time() + (30 * 24 * 6 * 6), "/");
         guardarToken($usuario, $token);
       }
-      header("Location: ./login.php"); // Redirige al panel principal
+      header("Location: perfil-user.php"); // Redirige al panel principal
       exit;
     }
   }
@@ -76,10 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
         <input type="submit" name="entrar" value="Entrar">
       </div>
       <br>
-      <?php foreach ($errores as $error) {
-        echo "<div class='errores style='color: crimson;'> $error </div>";
-      }
-      ?>
     </form>
     <div class="extras">
       <a href="./cambiar_contraseña.php">¿Olvidaste tu contraseña?</a>

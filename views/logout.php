@@ -8,6 +8,6 @@ if (isset($_COOKIE['usuario'])) {
   setcookie('usuario', '', time() - 3600, "/"); // Expira la cookie
 }
 
-header("Location: ./login.php");
+header("Location: login.php");
 exit;
 ?>
