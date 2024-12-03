@@ -1,4 +1,5 @@
 <?php
+require_once "../emisora/usuario_grupo.php";
 session_start();
 
 // Verificar sesión o cookie
@@ -17,7 +18,7 @@ if (!isset($_SESSION['usuario'])) {
 		exit;
 	}
 }
-
+	$favoritos = mostrarGruposFavoritos($usuario['usuarioId']);
 $usuario = $_SESSION['usuario'];
 ?>
 
@@ -52,6 +53,11 @@ $usuario = $_SESSION['usuario'];
 
 	<div class="my-groups">
 		<p>Aquí van los conciertos de los grupos que deseo añadir a mi lista</p>
+	</div>
+
+	<div class="favoritos">
+		<h2>Mis grupos favoritos</h2>
+		<?= toTableFavoritos($favoritos); ?>
 	</div>
 </body>
 

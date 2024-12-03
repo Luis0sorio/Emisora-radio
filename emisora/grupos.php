@@ -15,13 +15,19 @@ function getAllGroups() {
     $conexion = null;
   }
 }
+/**
+ * FUNCION QUE MUESTRA LA TABLA DE LOS GRUPOS MUSICALES.
+ * 
+ * @param mixed $grupos - recibe el array con los datos de los grupos de la funcion anterior.
+ * @return string - devuelve el código HTML de la tabla.
+ */
 function toTableGrupos($grupos = []) {
   if (empty($grupos)) {
     return "<p>No se encontraron resultados.</p>";
   }
   // $grupos = getAllGroups();
-  $html = "<table border='1'>";
-  $html .= "<tr>
+  $html = "<table class='tabla'>";
+  $html .= "<tr class='bordes'>
   <th>Nombre</th>
   <th>Creación</th>
   <th>Origen</th>
@@ -29,15 +35,15 @@ function toTableGrupos($grupos = []) {
   <th></th>
   </tr>";
   foreach ($grupos as $grupo) {
-    $html .= "<tr>
+    $html .= "<tr class='tuplas'>
     <td>{$grupo['nombre']}</td>
     <td>{$grupo['creacion']}</td>
     <td>{$grupo['origen']}</td>
     <td>{$grupo['genero']}</td>
-    <td>    
-      <form>
-        <input type='hidden' name='' value='{$grupo['grupoId']}'>
-        <input type='submit' name='añadir' value='LIKE'>
+    <td class='like'>    
+      <form method='POST'>
+        <input type='hidden' name='grupoId' value='{$grupo['grupoId']}'>
+        <input type='submit' name='like' value='LIKE'>
       </form>
     </td>
     </tr>";
@@ -46,8 +52,12 @@ function toTableGrupos($grupos = []) {
   return $html;
 }
 
+
 /**
- * FUNCION PARA FILTRAR POR GRUPO. INTRODUCES TEXTO Y MUESTRA LOS GRUPOS COINCIDENTES
+ * FUNCION PARA FILTRAR POR GRUPO.
+ * @param string $palabra - recibe una palabra introducida por el usuario.
+ * @return array - devuelve un array asociativo con los resultados.
+ * @return - 
  */
 function buscarGrupo($palabra){
   try{
