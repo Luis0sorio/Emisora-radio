@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
     <?php mostrarErrores();?>
 
   <div class="log">
-      <span>¿Tienes una cuenta? <a href="login.php">Entrar</a></span>
+      <span><a href="login.php">Inicia sesión</a> si ya tienes una cuenta</span>
   </div>
 
 </body>

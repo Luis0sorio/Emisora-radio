@@ -79,13 +79,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
     <form method='POST' class="form-container">
       <div class="form-group">
         <h2>SIGN IN</h2>
+        <span>Introduce tu usuario y contraseña</span>
         <input type="text" name="usuario" placeholder="Usuario"><br>
         <br>
         <input type="password" name="password" placeholder="Contraseña"><br>
         <br>
         <label><input type="checkbox" name="remember">Mantener abierta la sesión</label>
         <br><br>
-        <input type="submit" name="entrar" value="Entrar">
+        <input type="submit" name="entrar" value="Acceder">
       </div>
       <br>
     </form>

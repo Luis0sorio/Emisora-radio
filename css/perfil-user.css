@@ -1,43 +1,23 @@
-.profile{
-  border: 2px solid;
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  height:fit-content;
-  margin: 10px;
-  align-items: center;
-}
-.perfil-container{
-  display: flex;
-  flex-direction: column;
-  border: 2px solid;
-  margin: 10px;
-  align-items: center;
-}
-h1{
-  text-align: center;
-  text-transform: capitalize;
-}
-.perfil-container p{
-  padding: 5px;
-}
-form{
-  margin: 5px;
-  border: 1px solid green;
-  padding: 5px;
-}
 
-.to-do{
-  border: 2px solid red;
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  width: 350px;
-}
-.my-groups{
-  border: 2px solid red;
+
+body{
   display: flex;
   flex-direction: row;
-  margin: 10px;
-  width: 350px;
+}
+nav{
+  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height:max-content;
+}
+
+.profile{
+
+}
+
+main{
+  display: flex;
+  flex-direction: row;
+  border: 2px solid red;
 }

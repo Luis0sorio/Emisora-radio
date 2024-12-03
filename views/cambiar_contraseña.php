@@ -88,7 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
 <div class="contenedor">
   <form method='POST' class="new-container">
     <div class="new-group">
-      <h2>NUEVA CONTRASEÑA</h2>
+      <h2>RESTABLECER CONTRASEÑA</h2>
+      <span>Introduce tu usuario y tu nueva contraseña</span>
       <input type="text" name="user" placeholder="Usuario"><br>
       <br>
       <input type="password" name="new-pass" placeholder="Nueva contraseña"><br>
@@ -102,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
     <div class='errores' style='color: crimson;'><?= $error ?></div>
   <?php endforeach; ?>
   <div class="atras">
-    <a href="./login.php">LogIn</a>
+    <a href="./login.php">Formulario de inicio de sesión</a>
 </div>
 </div>
 

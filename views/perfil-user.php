@@ -1,4 +1,6 @@
+
 <?php
+/*
 require_once "../emisora/usuario_grupo.php";
 
 session_start();
@@ -24,7 +26,7 @@ if (!isset($_SESSION['usuario'])) {
 	$usuario = $_SESSION['usuario'];
 	$usuarioId = $_SESSION['usuarioId'];
 	$favoritos = mostrarGruposFavoritos($usuarioId);
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -38,32 +40,37 @@ if (!isset($_SESSION['usuario'])) {
 </head>
 
 <body>
-	<div class="profile">
-		<div class="perfil-container">
-			<h1><?= htmlspecialchars($usuario); ?></h1>
-			<p>Aquí puede ir el correo y algo más.</p>
+	<nav>
+		<div class="profile">
+			<div class="perfil-container">
+				<h1><?= htmlspecialchars($usuario); ?></h1>
+				<p>Aquí puede ir el correo y algo más.</p>
+			</div>
+			<form action="logout.php" method="POST">
+				<button type="submit" class="btn-logout">Cerrar Sesión</button>
+			</form>
 		</div>
-		<form action="logout.php" method="POST">
-			<button type="submit" class="btn-logout">Cerrar Sesión</button>
-		</form>
-	</div>
 
-	<div class="to-do">
-		<p>Aquí iran los enlaces para ver las tablas</p>
-		<a href="./grupos_musica.php">Ver grupos musicales</a>
-		<a href="">Ver conciertos/eventos</a>
-		<a href="">Ver </a>
-		<a href="">cuatro</a>
-	</div>
+		<div class="to-do">
+			<p>Aquí iran los enlaces para ver las tablas</p>
+			<a href="./grupos_musica.php">Ver grupos musicales</a>
+			<a href="">Ver conciertos/eventos</a>
+			<a href="">Ver </a>
+			<a href="">cuatro</a>
+		</div>
 
-	<div class="my-groups">
-		<p>Aquí van los conciertos de los grupos que deseo añadir a mi lista</p>
-	</div>
-
+		<div class="my-groups">
+			<p>Aquí van los conciertos de los grupos que deseo añadir a mi lista</p>
+		</div>
+	</nav>
+	
+	<main>
 	<div class="favoritos">
 		<h2>Mis grupos favoritos</h2>
 		<?= toTableFavoritos($favoritos); ?>
 	</div>
+	</main>
+
 </body>
 
 </html>
