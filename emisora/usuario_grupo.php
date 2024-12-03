@@ -21,7 +21,7 @@ function addGrupoFavorito($usuarioId, $grupoId) {
 function mostrarGruposFavoritos($usuarioId) {
   try{
     $conexion = conexionDB();
-    $select = "SELECT g.* FROM grupos g WHERE g.grupoId IN 
+    $select = "SELECT g.nombre, g.genero FROM grupos g WHERE g.grupoId IN 
     (SELECT ug.grupoId FROM usuarios_grupos ug
     WHERE ug.usuarioId = :usuarioId)";
     $consulta = $conexion->prepare($select);

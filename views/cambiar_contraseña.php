@@ -10,6 +10,12 @@ function limpiarEntrada($data){
   return htmlspecialchars(stripslashes(trim($data)));
 }
 
+/**
+ * FUNCION QUE CAMBIA LA CONTRASEÑA HASHEADA DE UN USUARIO
+ * @param string $usuario - nombre del usuario
+ * @param string $password - contraseña del usuario
+ * @return bool - booleana que devuelve 'true' si el cambio es correcto
+ */
 function updatePassword($usuario, $password) {
   try{
     $conexion = conexionDB();
@@ -24,21 +30,18 @@ function updatePassword($usuario, $password) {
     return false;
   }
 }
-/**
- * debo comprobar que la new-pass es igual al confirm-pass
- * debo hashear la confirm-pass y guardarla en la base de datos.
- * debo mostrar errores si el usuario no existe en la base de datos
- * debo validar correctamente los campos
- * 
- */
+
+// valido el formulario de cambio de contraseña
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
 
+  // inicializo las variables con los valores de los campos
   $usuario = limpiarEntrada($_POST['user']);
   $new = limpiarEntrada($_POST['new-pass']);
   $confirm = limpiarEntrada($_POST['confirm-pass']);
   $usuarioDB = getUsuarioUser($usuario);
 
+  //compruebo y valido los campos para el usuario
   if (empty($usuario)) {
     $errores[] = "El nombre de usuario es obligatorio.";
   } else if (!preg_match($patronU, $usuario)) {
@@ -47,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
     $errores[] = "El usuario no existe."; 
   }
 
+  //compruebo y valido los campos para la contraseña
   if (empty($new) || empty($confirm)) {
     $errores[] = "Introduzca una contraseña.";
   } else if (strlen($new) < 8) {
@@ -56,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
   }
 
   if (empty($errores)) {
-    $newHash = password_hash($confirm, PASSWORD_BCRYPT);
-    if (updatePassword($usuario, $newHash)){
+    $newHash = password_hash($confirm, PASSWORD_BCRYPT); // hasheo la nueva contraseña
+    if (updatePassword($usuario, $newHash)){ //la guardo en la base de datos
       echo "<span style='color:green;'>Actualización de contraseña completada.</span>";
     }else {
       echo "<span style='color:crimson;'>$error</span><br>";

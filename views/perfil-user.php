@@ -1,14 +1,17 @@
 <?php
 require_once "../emisora/usuario_grupo.php";
+
 session_start();
 
-// Verificar sesión o cookie
+// verifico la sesión y cookie
 if (!isset($_SESSION['usuario'])) {
 	if (isset($_COOKIE['usuario'])) {
 		$token = $_COOKIE['usuario'];
 		$usuario = validarToken($token);
 		if ($usuario) {
-			$_SESSION['usuario'] = $usuario;
+			//asignamos el nombre del usuario y su id a la sesión
+			$_SESSION['usuario'] = $usuario['nombre']; 
+			$_SESSION['usuarioId'] = $usuario['usuarioId'];
 		} else {
 			header("Location: login.php");
 			exit;
@@ -18,8 +21,10 @@ if (!isset($_SESSION['usuario'])) {
 		exit;
 	}
 }
-	$favoritos = mostrarGruposFavoritos($usuario['usuarioId']);
-$usuario = $_SESSION['usuario'];
+	$usuario = $_SESSION['usuario'];
+	$usuarioId = $_SESSION['usuarioId'];
+	$favoritos = mostrarGruposFavoritos($usuarioId);
+
 ?>
 
 <!DOCTYPE html>

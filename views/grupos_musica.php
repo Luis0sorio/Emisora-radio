@@ -4,10 +4,11 @@
 require_once "../emisora/grupos.php";
 require_once "../emisora/usuario_grupo.php";
 
+session_start();
 // variable que guarda los grupos de musica. 
 $resultados = getAllGroups();
 
-// validamos el buscador
+// valido el buscador de grupos
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['buscar'])) {
   $palabra = htmlspecialchars(stripslashes(trim($_POST['search']))); //limpiamos la entrada del campo
   $resultados = buscarGrupo($palabra); // filtra grupos por el valor introducido.
@@ -20,10 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['todos'])) {
   exit;
 }
 
-//añado a favoritos el grupo que deseo
+// valido la opcion de añadir un grupo a 'mis favoritos'
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like'])) {
-  //
-  session_start();
+
+  /* 
+    No esta funcionando correctamente la recogida del 'usuarioId' en la sesión
+  */
   if (isset($_SESSION['usuario']['usuarioId'])) {
     $usuarioId = $_SESSION['usuario']['usuarioId'];
   } else {
@@ -35,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like'])) {
   if ($usuarioId && $grupoId) {
     addGrupoFavorito($usuarioId, $grupoId);
   }
-  //
 }
 ?>
 

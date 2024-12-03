@@ -43,6 +43,24 @@ function getUsuarios() {
 }
 
 /**
+ * FUNCION QUE EXTRAE EL ID DE UN USUARIO CONCRETO. 
+ * CUANDO HAGAS LOGIN, ATRAPAS SU ID. ÚTIL PARA MÁS ADELANTE Y USO DE SESIONES
+ */
+function getUsuarioById($usuario){
+  try{
+    $conexion = conexionDB();
+    $select = "SELECT usuarioId FROM usuarios WHERE usuario = :usuario";
+    $consulta = $conexion->prepare($select);
+    $consulta->bindValue(':usuario', $usuario);
+    $consulta->execute();
+    return $consulta->fetchColumn();
+  } catch (PDOException $e) {
+    echo "Error al realizar la consulta. ". $e->getMessage();
+  }finally {
+    $conexion = null;
+  }
+}
+/**
  * FUNCION QUE MUESTRA UN REGISTRO 'usuario' DE LA TABLA 
  */
 function getUsuarioUser($usuario) {
