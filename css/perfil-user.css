@@ -67,35 +67,17 @@ body{
 }
 .user-account{
   margin-top: auto;
-  padding: 12px 10px;
-  margin-left: -10px;
-}
-.sidebar:hover .user-account{
-  background-color: #ffffff2d;
-  border-radius: 4px;
-}
-.user-account .user-profile{
+  padding: 1px;
+  margin-left: 5px;
   display: flex;
   align-items: center;
   color: #e5dede;
 }
-.user-profile img{
-  width: 62px;
-  border-radius: 50%;
-}
-.user-profile h3{
+
+.user-account h3{
   font-size: 1rem;
   font-weight: 600;
-}
-.user-profile span{
-  font-size: 0.775rem;
-  font-weight: 600;
-  display: block;
-  margin-top: 0;
-}
-.user-details{
-  margin-left: 23px;
-  white-space: nowrap;
+  color: white;
 }
 
 main{

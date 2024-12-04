@@ -84,8 +84,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
         <br>
         <input type="password" name="password" placeholder="Contraseña"><br>
         <br>
-        <label><input type="checkbox" name="remember">Mantener abierta la sesión</label>
-        <br><br>
+        <label><input type="checkbox" name="remember" id="remember">Mantener abierta la sesión</label>
+        <br>
+        <?php 
+          if (!empty($errores)){
+            foreach($errores as $error){
+              echo "<span style='color:red;'>" . $error . "</span><br>";
+            }
+          }
+          ?>
+        <br>
         <input type="submit" name="entrar" value="Acceder">
       </div>
       <br>
@@ -95,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
       <span>¿No tienes una cuenta? <a href="registro.php">Regístrate</a></span>
     </div>
   </div>
-
 </body>
 
 </html>

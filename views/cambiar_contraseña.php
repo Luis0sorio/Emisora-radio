@@ -66,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar'])) {
     }else {
       echo "<span style='color:crimson;'>$error</span><br>";
     }
-  } else {
+  } /*else {
     foreach ($errores as $error) {
       echo "<div class='errores'>
         <span style='color:crimson;'>$error</span><br>
       </div>";
     }
-  }
+  }*/
 }
 ?>
 

@@ -2,19 +2,17 @@
 
 require_once "../emisora/usuarios.php";
 /*
-Puntos clave a ajustar:
 Encriptación de contraseñas:
-- Usa la función password_hash() de PHP para encriptar las contraseñas antes de almacenarlas. password_verify();
+- la función password_hash() encripta las contraseñas antes de almacenarlas. password_verify();
 
 Valores predeterminados para admin y fecha_creacion:
 - admin: evitar pasarlo como parámetro en la consulta, está definido con valor predeterminado (DEFAULT 0) en la tabla.
 - fecha_creacion: valor predeterminado (CURRENT_TIMESTAMP), no necesito gestionarlo en la consulta.
 
 Validación y sanitización de datos:
-- validar que sean correctos (longitudes, formato de correo, etc.) y sanitiza las entradas para prevenir inyección SQL.
+- validar que sean correctos (longitudes, formato de correo, etc.) y sanitizar las entradas.
 
-Inserción en la base de datos:
-- Usa consultas parametrizadas para evitar inyecciones SQL.
+Inserción en la base de datos.
  */
 $nombre = $apellido = $usuario = $email = $password = "";
 $regEx = "/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/";
@@ -66,12 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
     insertarUsuario($nombre, $apellido, $email, $usuario, $hash_pass);
     //aquí hay que llamar a la funcion que inserta un nuevo usuario a la base de datos
     echo "<span style='color:green;'>Usuario registrado exitosamente.</span>";
-  } else {
-    foreach ($errores as $error) {
-      echo "<div class='errores'>
-        <span style='color:crimson;'>$error</span><br>
-      </div>";
-    }
   }
 }
 ?>
@@ -97,6 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
         <input type="text" name="apellido" placeholder="Apellido"><br><br>
       </fieldset>
     </div>
+    <?php if (!empty($errores)){
+      echo "<span style='color:red;'>El formulario no puede estar incompleto</span><br>";
+      }?>
     <div class="regis">
     <fieldset>
       <legend>DATOS DE REGISTRO</legend>
@@ -113,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registro'])) {
     <?php mostrarErrores();?>
 
   <div class="log">
-      <span><a href="login.php">Inicia sesión</a> si ya tienes una cuenta</span>
+    <span><a href="login.php">Inicia sesión</a> si ya tienes una cuenta</span>
   </div>
 
 </body>

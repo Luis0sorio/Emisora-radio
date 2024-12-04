@@ -55,25 +55,13 @@ if (!isset($_SESSION['usuario'])) {
 			<li>
 				<a href="./logout.php"><span>Cerrar sesión</span></a>
 			</li>
-			<h4>Cuenta</h4>
-			<li>
-				<a href="./logout.php"><span>Ajustes</span></a>
-			</li>
 		</ul>
 
-		<div class="user account">
-			<div class="user-profile">
-				<img src="../img/dead.png" alt="pfp">
-				<div class="user-details">
-					<h3> <? $_SESSION['usuario'] ?> Nombre del usuario </h3>
-					<span>Usuario musical</span>
-				</div>
-			</div>
+		<div class="user-account">
+			<h3>USUARIO: <?= $_SESSION['usuario'] ?> </h3>
 		</div>
 	</aside>
 
-
-	
 	<main>
 	<div class="favoritos">
 		<h2>Mis grupos favoritos</h2>

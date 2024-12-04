@@ -34,6 +34,9 @@ h2{
   flex-direction: column;
   align-items: center;
 }
+.form-group #remember {
+  width: 20px;
+}
 .form-group input{
   margin: 15px;
   width: 200px;
@@ -78,5 +81,5 @@ input[name="entrar"]:hover{
   text-decoration: none;
 }
 label{
-  font-size: 10px
+  font-size: 12px;
 }

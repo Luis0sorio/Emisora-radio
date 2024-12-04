@@ -50,24 +50,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like'])) {
   <title>Grupos musicales</title>
 </head>
 <body>
-  <div class="atras">
-    <a href='./perfil-user.php'>volver atrás</a>
-  </div>
+
+  <header>
+    <nav class="navbar">
+      <div class="navbar-header">
+        <a href='./perfil-user.php' class="navbar-back">volver atrás</a>
+      </div>
+
+      <div class="buscador">
+        <form method="POST">
+          <label for="search">Buscador de grupos:</label>
+          <input type="text" name="search" placeholder="Nombre del grupo">
+          <input type="submit" name="buscar" value="BUSCAR">
+          <input type="submit" name="todos" value="VER TODOS">
+        </form>
+      </div>
+    </nav>
+  </header>
   <br>
-  <h1>LISTADO DE GRUPOS MUSICALES</h1>
-  <div class="buscador">
-    <form method="POST">
-      <label>Buscador de grupos:</label>
-      <input type="text" name="search" placeholder="Nombre del grupo">
-      <input type="submit" name="buscar" value="BUSCAR">
-      <input type="submit" name="todos" value="VER TODOS">
-    </form>
-  </div>
-  <br>
-  <!-- LA TABLA DEBE ACTUALIZARSE Y MOSTRAR SOLO EL GRUPO O GRUPOS CON ALGUNA COINCIDENCIA -->
-  <div class="grupos">
-    <?= toTableGrupos($resultados)?>
-  </div>
+  <main>
+    <h1>LISTADO DE GRUPOS MUSICALES</h1>
+    <!-- LA TABLA DEBE ACTUALIZARSE Y MOSTRAR SOLO EL GRUPO O GRUPOS CON ALGUNA COINCIDENCIA -->
+    <div class="grupos">
+      <?= toTableGrupos($resultados)?>
+    </div>
+  </main>
 
 </body>
 </html>
