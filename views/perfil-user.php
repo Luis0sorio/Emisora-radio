@@ -1,6 +1,6 @@
 
 <?php
-/*
+
 require_once "../emisora/usuario_grupo.php";
 
 session_start();
@@ -26,7 +26,7 @@ if (!isset($_SESSION['usuario'])) {
 	$usuario = $_SESSION['usuario'];
 	$usuarioId = $_SESSION['usuarioId'];
 	$favoritos = mostrarGruposFavoritos($usuarioId);
-*/
+
 ?>
 
 <!DOCTYPE html>
@@ -35,34 +35,44 @@ if (!isset($_SESSION['usuario'])) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Perfil de Usuario</title>
+	<title>Home usuario</title>
 	<link href="../css/perfil-user.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<nav>
-		<div class="profile">
-			<div class="perfil-container">
-				<h1><?= htmlspecialchars($usuario); ?></h1>
-				<p>Aquí puede ir el correo y algo más.</p>
+
+	<aside class="sidebar">
+		<div class="sidebar-header">
+			<img src="../img/vinilo.png" alt="logo">
+			<h2>EmisoraDB</h2>
+		</div>
+
+		<ul class="sidebar-links">
+			<h4>General</h4>
+			<li>
+				<a href="../views/grupos_musica.php"><span>Grupos de música</span></a>
+			</li>
+			<li>
+				<a href="./logout.php"><span>Cerrar sesión</span></a>
+			</li>
+			<h4>Cuenta</h4>
+			<li>
+				<a href="./logout.php"><span>Ajustes</span></a>
+			</li>
+		</ul>
+
+		<div class="user account">
+			<div class="user-profile">
+				<img src="../img/dead.png" alt="pfp">
+				<div class="user-details">
+					<h3> <? $_SESSION['usuario'] ?> Nombre del usuario </h3>
+					<span>Usuario musical</span>
+				</div>
 			</div>
-			<form action="logout.php" method="POST">
-				<button type="submit" class="btn-logout">Cerrar Sesión</button>
-			</form>
 		</div>
+	</aside>
 
-		<div class="to-do">
-			<p>Aquí iran los enlaces para ver las tablas</p>
-			<a href="./grupos_musica.php">Ver grupos musicales</a>
-			<a href="">Ver conciertos/eventos</a>
-			<a href="">Ver </a>
-			<a href="">cuatro</a>
-		</div>
 
-		<div class="my-groups">
-			<p>Aquí van los conciertos de los grupos que deseo añadir a mi lista</p>
-		</div>
-	</nav>
 	
 	<main>
 	<div class="favoritos">
