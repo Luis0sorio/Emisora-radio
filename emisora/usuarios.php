@@ -77,7 +77,6 @@ function getUsuarioUser($usuario) {
   }
 }
 
-
 /**
  * FUNCION QUE MUESTRA UN REGISTRO 'password' DE LA TABLA 
  */

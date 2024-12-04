@@ -22,21 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['todos'])) {
 }
 
 // valido la opcion de añadir un grupo a 'mis favoritos'
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like']) && isset($_POST['grupoId'])) {
 
-  /* 
-    No esta funcionando correctamente la recogida del 'usuarioId' en la sesión
-  */
-  if (isset($_SESSION['usuario']['usuarioId'])) {
-    $usuarioId = $_SESSION['usuario']['usuarioId'];
-  } else {
-    $usuarioId = null;
-  }
-  
   $grupoId = $_POST['grupoId'];
-
-  if ($usuarioId && $grupoId) {
-    addGrupoFavorito($usuarioId, $grupoId);
+  $usuarioId = $_SESSION['usuarioId'];
+  if ($grupoId > 0 && $usuarioId > 1) {
+    addGrupoFavorito($usuarioId, $grupoId); // Añade el grupo como favorito
+  } else {
+    echo "Error";
   }
 }
 ?>

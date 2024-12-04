@@ -5,7 +5,7 @@ require_once "../emisora/usuario_grupo.php";
 
 session_start();
 
-// verifico la sesión y cookie
+// verifico la sesión y la cookie
 if (!isset($_SESSION['usuario'])) {
 	if (isset($_COOKIE['usuario'])) {
 		$token = $_COOKIE['usuario'];
@@ -15,18 +15,24 @@ if (!isset($_SESSION['usuario'])) {
 			$_SESSION['usuario'] = $usuario['nombre']; 
 			$_SESSION['usuarioId'] = $usuario['usuarioId'];
 		} else {
-			header("Location: login.php");
 			exit;
 		}
-	} else {
-		header("Location: login.php");
-		exit;
 	}
 }
 	$usuario = $_SESSION['usuario'];
 	$usuarioId = $_SESSION['usuarioId'];
 	$favoritos = mostrarGruposFavoritos($usuarioId);
 
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
+		//funcion que quita de la tabla 'usuarios_grupos' el grupo favorito
+		// id de la tabla 'usuarios_grupos' = id
+		$id = obtenerFavoritoById();
+		if ($id) {
+			borrarFavorito($id);
+			header("Location: perfil-user.php");
+      exit;
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +58,11 @@ if (!isset($_SESSION['usuario'])) {
 			<li>
 				<a href="../views/grupos_musica.php"><span>Grupos de música</span></a>
 			</li>
+				<!--
+			<li>
+				<a href="../views/artistas.php"><span>Artistas</span></a>
+			</li>
+			-->
 			<li>
 				<a href="./logout.php"><span>Cerrar sesión</span></a>
 			</li>
@@ -63,10 +74,19 @@ if (!isset($_SESSION['usuario'])) {
 	</aside>
 
 	<main>
-	<div class="favoritos">
-		<h2>Mis grupos favoritos</h2>
+	<div class="grupos-favoritos">
+		<h2>Mis grupos/artistas favoritos</h2>
+		<br>
 		<?= toTableFavoritos($favoritos); ?>
 	</div>
+	<br><br>
+	<!--
+	<div class="canciones-favoritos">
+		<h2>Mis canciones favoritas</h2>
+		<br>
+		
+	</div>
+-->
 	</main>
 
 </body>

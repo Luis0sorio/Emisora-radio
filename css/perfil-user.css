@@ -66,7 +66,7 @@ body{
   border-radius: 4px;
 }
 .user-account{
-  margin-top: auto;
+  margin-top: -35px;
   padding: 1px;
   margin-left: 5px;
   display: flex;
@@ -82,12 +82,56 @@ body{
 
 main{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 2000px;
+  width: 1000px;
 }
 
-.favoritos{
+.grupos-favoritos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-left: 500px;
+  margin-bottom: 15px;
+}
+h2{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.tabla{
+  width: 110%;
+  color: black;
+  font-weight: 600;
+  border-collapse: collapse;
+}
+.tabla th, .tabla td {
+  border: 3px solid #ddd;
+  padding: 8px;
+}
+.bordes th {
+  padding: 8px;
+  text-align: center;
+  background-color: #02f871;
+  color: black;
+  text-transform: uppercase;
+}
+.tuplas td{
+  background-color: #e5ebe8;
+  text-align: center;
+  padding: 4px;
+}
+
+.delete input[type="submit"]{
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  color: crimson;
+  font-weight: bold;
+  background-color: transparent;
+}
+.delete input[type="submit"]:hover{
+  background-color: transparent;
+  color: red;
 }

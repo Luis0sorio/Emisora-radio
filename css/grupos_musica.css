@@ -65,7 +65,9 @@ form input{
   flex-direction: column;
   align-items: center;
 }
-
+h1{
+  margin-bottom: 10px;
+}
 .tabla{
   width: 80%;
   color: black;
@@ -93,10 +95,11 @@ form input{
   border: none;
   /* background-color: rgb(229, 162, 175); */
   background-color: transparent;
+  background-color: blueviolet;
   color: pink;
   font-weight: bold;
   cursor: pointer;
 }
 .like input:hover{
-  color:blueviolet;
+  color:white;
 }

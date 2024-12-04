@@ -26,17 +26,26 @@ CREATE TABLE `grupos` (
   PRIMARY KEY (`grupoId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Tabla de componentes de los grupos
-DROP TABLE IF EXISTS `componentes`;
-CREATE TABLE `componentes` (
-  `componenteId` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(30) NOT NULL,
-  `grupoId` INT(10) UNSIGNED NOT NULL,
-  `instrumento` VARCHAR(25) NOT NULL,
-  PRIMARY KEY (`componenteId`),
-  FOREIGN KEY (`grupoId`) REFERENCES `grupos`(`grupoId`) ON DELETE CASCADE
+-- Tabla de relación entre usuarios y grupos añadidos
+DROP TABLE IF EXISTS `usuarios_grupos`;
+CREATE TABLE usuarios_grupos (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  usuarioId INT(10) UNSIGNED NOT NULL,
+  grupoId INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE (usuarioId, grupoId), -- Restricción única compuesta
+  FOREIGN KEY (usuarioId) REFERENCES usuarios(usuarioId) ON DELETE CASCADE,
+  FOREIGN KEY (grupoId) REFERENCES grupos(grupoId) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Inserción de un usuario administrador por defecto
+INSERT INTO `usuarios` (`nombre`, `apellido`, `email`, `usuario`, `password`, `admin`)
+VALUES ('Admin', 'Default', 'admin@emisoradb.com', 'admin', 'admin_password_hash', 1);
+
+
+/****************************************************************************************/
+/****************************************************************************************/
+/*
 -- Tabla de eventos
 DROP TABLE IF EXISTS `eventos`;
 CREATE TABLE `eventos` (
@@ -60,19 +69,39 @@ CREATE TABLE `registroEventos` (
   FOREIGN KEY (`eventoId`) REFERENCES `eventos`(`eventoId`) ON DELETE CASCADE,
   FOREIGN KEY (`usuarioId`) REFERENCES `usuarios`(`usuarioId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+*/
 
--- Tabla de relación entre usuarios y grupos añadidos
-DROP TABLE IF EXISTS `usuarios_grupos`;
-CREATE TABLE usuarios_grupos (
-  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  usuarioId INT(10) UNSIGNED NOT NULL,
+/*
+DROP TABLE IF EXISTS `canciones`;
+CREATE TABLE canciones (
+  cancionId INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  titulo VARCHAR(255) NOT NULL,
   grupoId INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE (usuarioId, grupoId), -- Restricción única compuesta
-  FOREIGN KEY (usuarioId) REFERENCES usuarios(usuarioId) ON DELETE CASCADE,
+  PRIMARY KEY (cancionId),
   FOREIGN KEY (grupoId) REFERENCES grupos(grupoId) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Inserción de un usuario administrador por defecto
-INSERT INTO `usuarios` (`nombre`, `apellido`, `email`, `usuario`, `password`, `admin`)
-VALUES ('Admin', 'Default', 'admin@emisoradb.com', 'admin', 'admin_password_hash', 1);
+DROP TABLE IF EXISTS `usuarios_canciones`;
+CREATE TABLE usuarios_canciones (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  usuarioId INT(10) UNSIGNED NOT NULL,
+  cancionId INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE (usuarioId, cancionId), -- Restricción única compuesta
+  FOREIGN KEY (usuarioId) REFERENCES usuarios(usuarioId) ON DELETE CASCADE,
+  FOREIGN KEY (cancionId) REFERENCES canciones(cancionId) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+*/
+
+/*
+-- Tabla de componentes de los grupos
+DROP TABLE IF EXISTS `componentes`;
+CREATE TABLE `componentes` (
+  `componenteId` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(30) NOT NULL,
+  `grupoId` INT(10) UNSIGNED NOT NULL,
+  `instrumento` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`componenteId`),
+  FOREIGN KEY (`grupoId`) REFERENCES `grupos`(`grupoId`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+*/
