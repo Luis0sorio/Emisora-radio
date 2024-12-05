@@ -1,19 +1,19 @@
 <?php
-
 require_once "../emisora/usuarios.php";
 
-session_start(); // inicio sesión
+session_start(); // Inicio sesión
 
-// valido si existe una cookie 'usuario'
+// Valido si existe una cookie 'usuario'
 if (isset($_COOKIE['usuario'])) {
-  $token = $_COOKIE['usuario']; // si es cierto, se guarda como valor del 'token'
-  $usuario = validarToken($token); // valido el token
-  if ($usuario) { // si la validacion devuelve 'true' se guarda la informacion del usuario en la sesión
+  $token = $_COOKIE['usuario']; // Si es cierto, se guarda como valor del 'token'
+  $usuario = validarToken($token); // Valido el token
+  if ($usuario) { // Si la validación devuelve 'true', se guarda la información del usuario en la sesión
     $_SESSION['usuario'] = $usuario;
     header("Location: perfil-user.php");
     exit;
   }
 }
+
 $usuario = $password = "";
 $errores = [];
 $patron = "/^[a-zA-Z0-9]*$/";
@@ -23,42 +23,50 @@ function limpiarEntrada($data)
   return htmlspecialchars(stripslashes(trim($data)));
 }
 
-// valido el login 
+// Valido el login
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
 
   $usuario = trim(limpiarEntrada($_POST['usuario']));
   $password = limpiarEntrada($_POST['password']);
 
-  // valido los campos
+  // Valido los campos
   if (empty($usuario) || empty($password)) {
     $errores[] = "Todos los campos son obligatorios.";
-  } else if (!preg_match($patron, $usuario)) {
+  } elseif (!preg_match($patron, $usuario)) {
     $errores[] = "Nombre de usuario incorrecto.";
   }
 
-  //si no tengo errores compruebo que la contraseña tenga la misma referencia que la guardada, en hash, en mi base de datos
+  // Si no tengo errores, compruebo la contraseña
   if (empty($errores)) {
     $dbPass = getUsuarioPass($usuario);
     if (!$dbPass || !password_verify($password, $dbPass)) {
-      // si no es igual, no me deja hacer login
       $errores[] = "Usuario o contraseña incorrectos.";
     } else {
-      // si es correcto, obtengo el id del usuario logeado
-      $userId = getUsuarioById($usuario);
-      // y fijo variables de sesion: nombre e id del usuario
-      $_SESSION['usuario'] = $usuario;
-      $_SESSION['usuarioId'] = $userId;
-      //si marqué el checkbox de 'recordar' creo un token
-      if (isset($_POST['remember'])) {
-        $token = bin2hex(random_bytes(16));
-        //creo la cookie con el token
-        setcookie('usuario', $token, time() + (30 * 24 * 6 * 6), "/");
-        // guardo el token en la base de datos
-        guardarToken($usuario, $token);
+      // Obtengo los datos del usuario (incluyendo el campo 'admin')
+      $userData = getUsuario($usuario);
+
+      if ($userData) {
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['usuarioId'] = $userData['usuarioId'];
+        $_SESSION['admin'] = $userData['admin'];
+
+        // Creo un token si marqué el check de recordar
+        if (isset($_POST['remember'])) {
+          $token = bin2hex(random_bytes(16));
+          setcookie('usuario', $token, time() + 30 * 24 * 60 * 60, "/");
+          guardarToken($usuario, $token);
+        }
+
+        // redireccionamos según el tipo de usuario
+        if ($userData['admin'] == 1) {
+          header("Location: home-admin.php"); // Administrador
+        } else {
+          header("Location: perfil-user.php"); // Usuario normal
+        }
+        exit;
+      } else {
+        $errores[] = "Error al obtener los datos del usuario.";
       }
-      // una vez el login es satisfactorio, me dirige a la ventana de perfil del usuario
-      header("Location: perfil-user.php"); // Redirige al panel principal
-      exit;
     }
   }
 }
@@ -86,13 +94,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['entrar'])) {
         <br>
         <label><input type="checkbox" name="remember" id="remember">Mantener abierta la sesión</label>
         <br>
-        <?php 
-          if (!empty($errores)){
-            foreach($errores as $error){
-              echo "<span style='color:red;'>" . $error . "</span><br>";
-            }
+        <?php
+        if (!empty($errores)) {
+          foreach ($errores as $error) {
+            echo "<span style='color:red;'>" . $error . "</span><br>";
           }
-          ?>
+        }
+        ?>
         <br>
         <input type="submit" name="entrar" value="Acceder">
       </div>

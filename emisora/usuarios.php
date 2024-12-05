@@ -42,10 +42,7 @@ function getUsuarios() {
   }
 }
 
-/**
- * FUNCION QUE EXTRAE EL ID DE UN USUARIO CONCRETO. 
- * CUANDO HAGAS LOGIN, ATRAPAS SU ID. ÚTIL PARA MÁS ADELANTE Y USO DE SESIONES
- */
+/*
 function getUsuarioById($usuario){
   try{
     $conexion = conexionDB();
@@ -60,9 +57,7 @@ function getUsuarioById($usuario){
     $conexion = null;
   }
 }
-/**
- * FUNCION QUE MUESTRA UN REGISTRO 'usuario' DE LA TABLA 
- */
+
 function getUsuarioUser($usuario) {
   try{
     $conexion = conexionDB();
@@ -76,6 +71,23 @@ function getUsuarioUser($usuario) {
     return false;
   }
 }
+*/
+function getUsuario($usuario) {
+  try {
+    $conexion = conexionDB();
+    $select = "SELECT usuarioId, admin FROM usuarios WHERE usuario = :usuario";
+    $consulta = $conexion->prepare($select);
+    $consulta->bindValue(':usuario', $usuario);
+    $consulta->execute();
+    return $consulta->fetch(PDO::FETCH_ASSOC); // Devuelve un array asociativo con usuarioId y admin
+  } catch (PDOException $e) {
+    echo "Error al realizar la consulta. " . $e->getMessage();
+  } finally {
+    $conexion = null;
+  }
+  return null;
+}
+
 
 /**
  * FUNCION QUE MUESTRA UN REGISTRO 'password' DE LA TABLA 
